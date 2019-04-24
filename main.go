@@ -7,8 +7,9 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"wei/k8s-service-sample/handlers"
-	"wei/k8s-service-sample/version"
+
+	"github.com/walk1ng/k8s-service-sample/handlers"
+	"github.com/walk1ng/k8s-service-sample/version"
 )
 
 func main() {
