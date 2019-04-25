@@ -1,6 +1,6 @@
 PROJECT?=github.com/walk1ng/k8s-service-sample
 APP?=mysvc
-PORT?=8081
+PORT?=8000
 
 RELEASE?=0.0.1
 COMMIT?=$(shell git rev-parse --short HEAD)
@@ -35,3 +35,13 @@ push: container
 
 test:
 	go test -v ./...
+
+kube: push
+	for t in $(shell find ./kube/ -type f -name "*.yaml"); do \
+	cat $$t | \
+		sed "s/REPLACE_SVC_NAME/$(APP)/g" | \
+		sed "s/REPLACE_RELEASE/$(RELEASE)/g" | \
+		sed "s/REPLACE_REGISTRY/$(AZ_REGISTRY)/g"; \
+		echo "---"; \
+	done > one.yaml
+	kubectl apply -f one.yaml

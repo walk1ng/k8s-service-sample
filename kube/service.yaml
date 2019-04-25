@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: REPLACE_SVC_NAME
+  labels:
+    app: REPLACE_SVC_NAME
+spec:
+  ports:
+  - port: 80
+    targetPort: 8000
+    protocol: TCP
+    name: http
+  selector:
+    app: REPLACE_SVC_NAME
